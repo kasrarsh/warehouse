@@ -119,8 +119,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'werehouse/static')
 ]
-<<<<<<< HEAD
-=======
 
 # Message
 MESSAGE_TAGS = {
@@ -128,4 +126,3 @@ MESSAGE_TAGS = {
     messages.ERROR: 'danger',
     messages.INFO: 'info',
 }
->>>>>>> 4a360469a84fe49ea68494b48ea88bfbaae41ad0
