@@ -13,18 +13,6 @@ class Person(models.Model):
         return full_name
 
 
-class Entry(models.Model):
-    seller = models.ForeignKey(
-        Person,
-        on_delete=models.CASCADE
-    )
-    total_cost = models.IntegerField()
-    date = models.DateField()
-
-    def __str__(self):
-        return '{} at {}'.format(self.seller, self.date)
-
-
 class Category(models.Model):
     name = models.CharField(max_length=200)
     parent = models.ForeignKey(
@@ -49,10 +37,29 @@ class Product(models.Model):
         'Category',
         on_delete=models.CASCADE
     )
-    count = models.IntegerField()
+
+    def __str__(self):
+        return self.name
+
+
+class Count(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    count = models.PositiveIntegerField()
+
+    def __str__(self):
+        return '{} x {}'.format(self.product, self.count)
+
+
+class Entry(models.Model):
+    seller = models.ForeignKey(
+        Person,
+        on_delete=models.CASCADE
+    )
+    total_cost = models.IntegerField()
+    date = models.DateField()
     entries = models.ManyToManyField(
-        Entry,
+        Count,
     )
 
     def __str__(self):
-        return '{} x {}'.format(self.name, self.count)
+        return '{} at {}'.format(self.seller, self.date)
